@@ -1,0 +1,15 @@
+<div id="myDIV" class="header">
+  <h2 >My To Do List</h2>
+  <input type="text" id="myInput" placeholder="Title..." [(ngModel)]="item['description']">
+ 
+  <select [(ngModel)]="item['priority']">
+    <option value="0">High</option>
+    <option value="1">Medium</option>
+    <option value="2">Low</option>
+  </select>
+    
+     <div class="form-group">
+      <button type="submit" class="btn btn-primary mb-2" (click)="AddItem()">ADD</button> 
+    </div> 
+     <br>
+</div>

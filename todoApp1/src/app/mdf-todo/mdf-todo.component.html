@@ -1,0 +1,58 @@
+
+<div id="myDIV" class="header">
+  <h2 >My To Do List</h2>
+  <form class="container" [formGroup]='form1' (ngSubmit)="onSubmit(form1.value)">
+  <input type="text" id="myInput" placeholder="Title..." formControlName='description'>
+ 
+  <select formControlName='priority'>
+    <option value="0">High</option>
+    <option value="1">Medium</option>
+    <option value="2">Low</option>
+     </select>
+    
+      {{form1.valid}}
+      <button type="submit" class="btn btn-primary mb-2" [disabled]="!form1.valid">ADD</button> 
+   
+      </form>
+     <br>
+
+     <select [(ngModel)]="sortByKey">
+      <option value="description">Description</option>
+      <option value="priority">Priority</option>
+     </select>
+
+     <select [(ngModel)]="sortOrder">
+      <option value="Ascending">Ascending</option>
+      <option value="dsc">Descending</option>
+     </select>
+     <!--{{item["description"]}}
+     {{item["priority"]}}-->
+     
+   <!-- <span *ngFor="let item of itemList" style="display:block;">{{item['description']}} - {{item['priority']}}</span>  -->
+   <table class="table" *ngIf="updatingItemList">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Item description</th>
+        <th scope="col">Priority</th>
+        <th scope="col"></th>
+
+
+       
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of itemList | sortObjectArray:sortByKey:sortOrder;let i = index" [ngClass]="{'btn-success':item['priority']=='1',
+        'btn-primary':item['priority']=='0','btn-info':item['priority']=='2'}">
+          <th scope="row">{{i+1}}</th>
+          <td>{{item['description'] | uppercase}}</td>
+          <td>{{item['priority'] | uppercase}}</td>
+          <td><button class="btn-warning" *ngIf="itemList.length>1" (click)="RemoveItem(item)">Delete</button></td>
+
+         
+        </tr>
+        
+      </tbody>
+    </table>
+
+</div>

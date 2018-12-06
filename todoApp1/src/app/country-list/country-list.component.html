@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="col-12">
+    <button class ="btn btn-primary mb-2" (click)="getCountries()">Get All Countries</button>
+  </div>
+  <div class="col-3">
+    <input type="text" [(ngModel)]="searchKey">
+  </div>
+  <div class="col-3">
+    <button class="btn btn-primary mb-2" (click)="getCountriesByName()">Search</button> 
+  </div>
+  <div class="col-12 table-responsive">
+    <table class="table">
+      <th>
+        <tr>
+          <td>Name</td>
+          <td>Capital</td>
+          <td>languages</td>
+
+        </tr>
+      </th>
+      <tbody>
+        <tr *ngFor="let country of countriesList">
+          <td>{{country['name']}}</td>
+          <td>{{country['capital']}}</td>
+          <td><a *ngFor="let language of country ['languages']">{{language ['name']}}, </a> </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

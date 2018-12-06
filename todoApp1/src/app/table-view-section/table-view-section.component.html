@@ -1,0 +1,28 @@
+<div class="tableview">
+  <table class="table" *ngIf="updatingItemList">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Item description</th>
+      <th scope="col">Priority</th>
+      <th scope="col"></th>
+
+
+     
+    </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let item of itemList | sortObjectArray:sortByKey:sortOrder ;let i = index" [ngClass]="{'btn-success':item['priority']=='1',
+      'btn-primary':item['priority']=='0','btn-info':item['priority']=='2'}">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item['description'] | uppercase}}</td>
+        <td>{{item['priority'] | uppercase}}</td>
+        <td><button class="btn-warning" *ngIf="itemList.length>1" (click)="RemoveItem(item)">Delete</button></td>
+
+       
+      </tr>
+      
+    </tbody>
+  </table>
+
+</div>
